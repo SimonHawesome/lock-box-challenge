@@ -21,6 +21,7 @@ app.get('/', function(req, res){
 });
 
 
+
 //Establish total number of required users
 var totalUsers = 0;
 
