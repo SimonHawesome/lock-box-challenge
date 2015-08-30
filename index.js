@@ -1,11 +1,24 @@
-var express = require('express');
-var app = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var express = require('express'),
+    http = require('http'),
+    fs = require('fs'),
+    path = require('path'),
+    app = express();
 
-// Routing
-app.use(express.static(__dirname + '/public'));
+app.set('port', process.env.PORT || 4000);
 
+app.use(express.static(path.join(__dirname, 'public')));
+
+var server = http.createServer(app);
+
+server.listen(app.get('port'), function () {
+    console.log("Express server listening on port " + app.get('port'));
+});
+
+var io = require('socket.io')(server);
+
+app.get('/', function(req, res){
+    res.sendFile('/public/index.html');
+});
 
 
 //Establish total number of required users
@@ -31,9 +44,3 @@ io.on('connection', function(socket){
     });
 });
 
-
-
-
-http.listen(3000, function(){
-  console.log('listening on *:3000');
-});
