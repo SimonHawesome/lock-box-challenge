@@ -12,13 +12,12 @@ $(function() {
 
         //console.log(data.totalUsers + "/15");
 
-        textBoxP.text(data.totalUsers + "/15");
+        textBoxP.text(data.totalUsers + "/20");
 
 
+        if(data.totalUsers >= 20){
 
-        if(data.totalUsers >= 15){
-
-            textBoxP.text("30 00 24");
+            socket.emit("All users logged in");
 
             textBoxH2.text("Enjoy your tasty treats!");
 
@@ -27,6 +26,11 @@ $(function() {
         }else{
             textBoxH3.css("display", "block");
         }
+
+        socket.on('revealCombo', function(){
+            textBoxP.text("30 00 24");
+        });
+
 
 
     });
