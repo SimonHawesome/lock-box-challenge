@@ -12,10 +12,10 @@ $(function() {
 
         //console.log(data.totalUsers + "/15");
 
-        textBoxP.text(data.totalUsers + "/25");
+        textBoxP.text(data.totalUsers + "/30");
 
 
-        if(data.totalUsers >= 25){
+        if(data.totalUsers >= 30){
 
             socket.emit("All users logged in");
 
@@ -32,8 +32,5 @@ $(function() {
         });
 
     });
-
-
-
 
 });
